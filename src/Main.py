@@ -1,4 +1,4 @@
-from src.TypeSpeed import TypeSpeed
+from TypeSpeed import TypeSpeed
 
 class Main:
 

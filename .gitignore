@@ -1,1 +1,3 @@
-__pycache__/
+error_log.pkl
+stat.pkl
+src/__pycache__

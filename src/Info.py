@@ -14,7 +14,7 @@ class Info:
         self.root.config(bg = WHITE)
 
         # Создание текста
-        self.label = tk.Label(self.root, justify = 'left', text = open("info.txt", "r").read(), font = ("Times New Roman", 18),
+        self.label = tk.Label(self.root, justify = 'left', text = open("extensions/info.txt", "r").read(), font = ("Times New Roman", 18),
                               bg = WHITE)
         self.label.pack()
 

@@ -4,7 +4,7 @@ import threading
 import random
 import pickle
 from os.path import exists
-from src.Info import Info
+from Info import Info
 
 class TypeSpeed:
 
@@ -29,7 +29,7 @@ class TypeSpeed:
         self.statistic = pickle.load(open("stat.pkl", "rb"))
 
         # Загрузка строк из файла
-        self.requirements = open("requirements.txt", "r").read().split("\n")
+        self.requirements = open("extensions/requirements.txt", "r").read().split("\n")
 
         # Функция проверки корректного символа
         self.check = (self.root.register(self.is_valid), "%P")
