@@ -12,13 +12,20 @@ class TypeSpeed:
         # Параметры игрового окна
         self.root = tk.Tk()
         self.root.title("Keyboard trainer")
+    
+    def set_window_size(self):
+        # Размеры окна
         self.weight = 1280
         self.height = 720
         self.root.geometry(f'{self.weight}x{self.height}')
         self.root.resizable(False, False)
+
+    def set_window_color(self):
+        # Цвет окна
         self.GRAYISH_YELLOW_PINK = '#CF9284'
         self.root.config(bg = self.GRAYISH_YELLOW_PINK)
 
+    def set_files(self):
         # Открытие файла с ошибками
         if not exists("error_log.pkl"):
            pickle.dump(0, open("error_log.pkl", "wb"))
@@ -34,21 +41,12 @@ class TypeSpeed:
         # Функция проверки корректного символа
         self.check = (self.root.register(self.is_valid), "%P")
 
+    def set_window(self):
         # Создание окна для ввода строки
         self.GREY = '#FFFFF0'
         self.frame_one = tk.Frame(self.root, bg = self.GREY)
         self.frame_one.place(relwidth = 0.5, relheight = 0.5)
         self.sentence = random.choice(self.requirements)
-
-        # Приветствие
-        self.welcome_label = tk.Label(self.root, justify = 'center', text = "Keyboard trainer", font = ("Times New Roman", 32),
-                                      bg = self.GRAYISH_YELLOW_PINK)
-        self.welcome_label.place(relx = 0.25, rely = 0, relwidth = 0.5, relheight = 0.1)
-    
-        # Текст для ввода
-        self.sample_label = tk.Label(self.frame_one, text = self.sentence, font = ("Times New Roman", 24))
-        self.sample_label.grid(row = 0, column = 0, columnspan = 2, padx = 5, pady = 10)
-        self.sample_label.place(relx = 0.01, rely = 0.05, relwidth = 0.98, relheight = 0.08)
 
         # Поле для печати
         self.WHITE = "#FFFFFF"
@@ -58,6 +56,18 @@ class TypeSpeed:
         self.input_entry.place(relx = 0.01, rely = 0.15, relwidth = 0.98, relheight = 0.08)
         self.input_entry.bind("<KeyRelease>", self.start)
 
+    def set_texts(self):
+        # Приветствие
+        self.welcome_label = tk.Label(self.root, justify = "center", text = "Keyboard trainer", font = ("Times New Roman", 32),
+                                      bg = self.GRAYISH_YELLOW_PINK)
+        self.welcome_label.place(relx = 0.25, rely = 0, relwidth = 0.5, relheight = 0.1)
+    
+        # Текст для ввода
+        self.sample_label = tk.Label(self.frame_one, text = self.sentence, font = ("Times New Roman", 24))
+        self.sample_label.grid(row = 0, column = 0, columnspan = 2, padx = 5, pady = 10)
+        self.sample_label.place(relx = 0.01, rely = 0.05, relwidth = 0.98, relheight = 0.08)
+
+    def set_view(self):
         # Отображение времени печати
         self.time_label = tk.Label(self.frame_one, text = "Time: 0.0 sec", font = ("Times New Roman", 20))
         self.time_label.grid(row = 3, column = 0, columnspan = 1, padx = 5, pady = 10)
@@ -81,11 +91,11 @@ class TypeSpeed:
         self.error_label.grid(row = 3, column = 0, columnspan = 2, padx = 5, pady = 5)
         self.error_label.place(x = 280, y = 350)
 
+    def set_buttons(self):
         # Кнопка 'Reset'
         self.reset_button = tk.Button(self.frame_one, text = "Reset", command = self.reset, font = ("Times New Roman", 24))
         self.reset_button.grid(row = 4, column = 0, columnspan = 2, padx = 5, pady = 5)
         self.reset_button.place(relx = 0.02, rely = 0.88, relwidth = 0.08, relheight = 0.08)
-
 
         # Кнопка открытия 'Help'
         self.help_button = tk.Button(self.frame_one, text = "Help", command = self.open_info, font = ("Times New Roman", 24))
@@ -94,6 +104,7 @@ class TypeSpeed:
 
         self.frame_one.place(rely = 0.1, relwidth = 1, relheight = 0.9)
 
+    def set_values(self):
         self.error_count = 0
         self.running = False
         self.index = 0
@@ -110,8 +121,11 @@ class TypeSpeed:
 
     # Начало отсчёта времени
     def start(self, event):
+        SHIFT_KEY = 16
+        CONTROL_KEY = 17
+        ALT_KEY = 18
         if not self.running:
-            if not event.keycode in [16, 17, 18]:
+            if not event.keycode in [SHIFT_KEY, CONTROL_KEY, ALT_KEY]:
                 self.running = True
                 t = threading.Thread(target = self.time_thread)
                 t.start()
@@ -158,12 +172,13 @@ class TypeSpeed:
         self.sample_label = tk.Label(self.frame_one, text = self.sentence, font = ("Times New Roman", 24))
         self.sample_label.grid(row = 0, column = 0, columnspan = 2, padx = 5, pady = 10)
         self.sample_label.place(relx = 0.01, rely = 0.05, relwidth = 0.98, relheight = 0.08)
+        self.input_entry.destroy()
         self.input_entry = tk.Entry(self.frame_one, width = 78, validate = "key", validatecomman = self.check,
                                     font = ("Times New Roman", 24), background = self.WHITE)
         self.input_entry.grid(row = 1, column = 0, columnspan = 2, padx = 5, pady = 10)
         self.input_entry.place(relx = 0.01, rely = 0.15, relwidth = 0.98, relheight = 0.08)
+        self.error_label.config(text = f"0 errors")
         self.input_entry.bind("<KeyRelease>", self.start)
-        self.input_entry.after_idle(lambda: self.input_entry.configure(validate = "all"))
 
     def open_info(self):
         Info()

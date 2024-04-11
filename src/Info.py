@@ -7,7 +7,7 @@ class Info:
         self.height = 300
         self.weight = 300
         self.root = tk.Tk()
-        self.root.title("Information about playing")
+        self.root.title("Help")
         self.root.geometry(f'{self.height}x{self.weight}')
         self.root.resizable(False, False)
         WHITE = '#FFFFFF'
