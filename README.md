@@ -37,11 +37,11 @@ sudo apt install python3
 ```
    - Установка Pip:
 ```
-sudo apt -y install python3-pip
+sudo apt install python3-pip
 ```
    - Данная команда установит все необходимые библиотеки и зависимости:
 ```
-pip install -r requirements.txt.
+pip install -r requirements.txt
 ```
    - Клонирование репозитория:
 ```
