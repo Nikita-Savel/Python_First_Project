@@ -36,7 +36,7 @@ class TypeSpeed:
         self.statistic = pickle.load(open("stat.pkl", "rb"))
 
         # Загрузка строк из файла
-        self.requirements = open("extensions/requirements.txt", "r").read().split("\n")
+        self.texts = open("extensions/texts.txt", "r").read().split("\n")
 
         # Функция проверки корректного символа
         self.check = (self.root.register(self.is_valid), "%P")
@@ -46,7 +46,7 @@ class TypeSpeed:
         self.GREY = '#FFFFF0'
         self.frame_one = tk.Frame(self.root, bg = self.GREY)
         self.frame_one.place(relwidth = 0.5, relheight = 0.5)
-        self.sentence = random.choice(self.requirements)
+        self.sentence = random.choice(self.texts)
 
         # Поле для печати
         self.WHITE = "#FFFFFF"
@@ -162,7 +162,7 @@ class TypeSpeed:
         self.number_words = 0
         self.number_symbols = 0
         self.index = 0
-        self.sentence = random.choice(self.requirements)
+        self.sentence = random.choice(self.texts)
         self.speed_label.config(text = "Speed: \n 0 CPM \n 0 WPM")
         self.time_label.config(text = "Time: 0.0 sec")
         ans = pickle.load(open("error_log.pkl", "rb"))
@@ -196,7 +196,7 @@ class TypeSpeed:
             self.index = 0
             self.det2 = True
             self.detector = True
-            self.sentence = random.choice(self.requirements)
+            self.sentence = random.choice(self.texts)
             self.speed_label.config(text="Speed: \n 0 CPM \n 0 WPM")
             CPM = self.number_symbols / (self.const_time - self.temporary_time) * 60
             pickle.dump(CPM, open("stat.pkl", "wb"))
