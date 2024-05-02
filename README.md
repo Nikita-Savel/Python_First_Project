@@ -24,7 +24,7 @@
    - Метод `is_valid()` для проверки совпадения символа
 
 2. `Info` - класс для генерации окна с основной информацией
-   - Метод `__init__()` для генерации окна  
+   - Метод `__init__()` для генерации окна
 
 3. `Main` - основной класс
    - Метод `__init__()` для запуска тренажёра
@@ -41,7 +41,7 @@ sudo apt install python3-pip
 ```
    - Данная команда установит все необходимые библиотеки и зависимости:
 ```
-pip install -r requirements.txt
+pip install -r extensions/requirements.txt
 ```
    - Клонирование репозитория:
 ```
@@ -49,6 +49,6 @@ git clone https://github.com/Nikita-Savel/Python_First_Project.git
 ```
    - Запуск файла:
 ```
-python3 Main.py
+python3 src/Main.py
 ```
 
