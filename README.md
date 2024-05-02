@@ -41,7 +41,7 @@ sudo apt install python3-pip
 ```
    - Данная команда установит все необходимые библиотеки и зависимости:
 ```
-pip install -r requirements.txt
+pip install -r extensions/requirements.txt
 ```
    - Клонирование репозитория:
 ```
@@ -49,6 +49,6 @@ git clone https://github.com/Nikita-Savel/Python_First_Project.git
 ```
    - Запуск файла:
 ```
-python3 Main.py
+python3 src/Main.py
 ```
 
